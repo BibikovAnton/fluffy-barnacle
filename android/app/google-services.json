@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022157797500",
+    "project_id": "gen-lang-client-0841432940",
+    "storage_bucket": "gen-lang-client-0841432940.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022157797500:android:507aebc49f83c9ac9031f9",
+        "android_client_info": {
+          "package_name": "com.example.messanger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9mgk_f0zVm6MagRp2oISRerdWEOoGVI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
