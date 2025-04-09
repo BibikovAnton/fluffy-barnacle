@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:messanger/core/error/failures/auth_failure.dart';
 import 'package:messanger/features/auth/domain/entities/user_entities.dart';
 import 'package:messanger/features/auth/domain/repositories/user_repositories.dart';
 
@@ -8,23 +6,7 @@ class SignUpWithEmailAndPassword {
 
   SignUpWithEmailAndPassword(this.repository);
 
-  Future<Either<AuthFailure, UserEntity>> call(signUpParams) async {
-    return await repository.signUpWithEmailAndPassword(
-      signUpParams.email,
-      signUpParams.password,
-      signUpParams.name,
-    );
+  Future<UserEntity> call(String email, String password) async {
+    return await repository.signUpWithEmailAndPassword(email, password);
   }
-}
-
-class SignUpParams {
-  final String email;
-  final String password;
-  final String name;
-
-  SignUpParams({
-    required this.email,
-    required this.password,
-    required this.name,
-  });
 }

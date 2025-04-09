@@ -1,45 +1,41 @@
 part of 'auth_bloc.dart';
 
+@immutable
 abstract class AuthEvent extends Equatable {
   const AuthEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class LoginEvent extends AuthEvent {
+// Событие инициализации (проверка текущего пользователя)
+class AuthInitEvent extends AuthEvent {}
+
+// Вход по email/паролю
+class AuthSignInRequested extends AuthEvent {
   final String email;
   final String password;
 
-  const LoginEvent({required this.email, required this.password});
+  const AuthSignInRequested(this.email, this.password);
 
   @override
-  List<Object> get props => [email, password];
+  List<Object?> get props => [email, password];
 }
 
-class RegisterEvent extends AuthEvent {
+// Регистрация
+class AuthSignUpRequested extends AuthEvent {
   final String email;
   final String password;
-  final String name;
+  final String? username;
 
-  const RegisterEvent({
-    required this.email,
-    required this.password,
-    required this.name,
-  });
+  const AuthSignUpRequested(this.email, this.password, {this.username});
 
   @override
-  List<Object> get props => [email, password, name];
+  List<Object?> get props => [email, password, username];
 }
 
-class LogoutEvent extends AuthEvent {}
+// Выход
+class AuthSignOutRequested extends AuthEvent {}
 
-class CheckAuthEvent extends AuthEvent {}
-
-class UpdateProfileEvent extends AuthEvent {
-  final String? name;
-  final String? photoUrl;
-  final String? status;
-
-  const UpdateProfileEvent({this.name, this.photoUrl, this.status});
-}
+// Получение текущего пользователя
+class AuthGetCurrentUserRequested extends AuthEvent {}

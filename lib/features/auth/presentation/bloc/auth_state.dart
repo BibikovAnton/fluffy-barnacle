@@ -1,41 +1,37 @@
 part of 'auth_bloc.dart';
 
+@immutable
 abstract class AuthState extends Equatable {
-  const AuthState();
+  final UserEntity? user;
+  final String? error;
+
+  const AuthState({this.user, this.error});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [user, error];
 }
 
-class AuthInitial extends AuthState {}
-
-class AuthLoading extends AuthState {}
-
-class Authenticated extends AuthState {
-  final UserEntity user;
-
-  const Authenticated(this.user);
-
-  @override
-  List<Object> get props => [user];
+// Начальное состояние
+class AuthInitial extends AuthState {
+  const AuthInitial() : super();
 }
 
-class Unauthenticated extends AuthState {}
+// Загрузка
+class AuthLoading extends AuthState {
+  const AuthLoading() : super();
+}
 
+// Успешная аутентификация
+class AuthAuthenticated extends AuthState {
+  const AuthAuthenticated(UserEntity user) : super(user: user);
+}
+
+// Не аутентифицирован
+class AuthUnauthenticated extends AuthState {
+  const AuthUnauthenticated({String? error}) : super(error: error);
+}
+
+// Ошибка
 class AuthError extends AuthState {
-  final String message;
-
-  const AuthError(this.message);
-
-  @override
-  List<Object> get props => [message];
-}
-
-class ProfileUpdated extends AuthState {
-  final UserEntity user;
-
-  const ProfileUpdated(this.user);
-
-  @override
-  List<Object> get props => [user];
+  const AuthError(String error) : super(error: error);
 }

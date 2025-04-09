@@ -1,23 +1,37 @@
-import 'package:messanger/features/auth/domain/entities/user_entities.dart';
+class UserModel {
+  final String id;
+  final String name;
+  final String profileImage;
+  final String bio;
+  final String email;
 
-class UserModel extends UserEntity {
-  const UserModel({
-    required String uid,
-    String? email,
-    String? name,
-    String? photoUrl,
-  }) : super(uid: uid, email: email, name: name, photoUrl: photoUrl);
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.profileImage,
+    required this.bio,
+    required this.email,
+  });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  // Преобразуем из Firestore документа в объект UserModel
+  factory UserModel.fromFirestore(Map<String, dynamic> json) {
     return UserModel(
-      uid: json['uid'],
-      email: json['email'],
+      id: json['id'],
       name: json['name'],
-      photoUrl: json['photoUrl'],
+      profileImage: json['profileImage'],
+      bio: json['bio'],
+      email: json['email'],
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {'uid': uid, 'email': email, 'name': name, 'photoUrl': photoUrl};
+  // Преобразуем обратно в Map для сохранения в Firestore
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'profileImage': profileImage,
+      'bio': bio,
+      'email': email,
+    };
   }
 }

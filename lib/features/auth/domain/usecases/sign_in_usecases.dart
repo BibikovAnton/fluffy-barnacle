@@ -1,28 +1,12 @@
-import 'package:dartz/dartz.dart';
-import 'package:messanger/core/error/failures/auth_failure.dart';
+import 'package:messanger/features/auth/domain/entities/user_entities.dart';
 import 'package:messanger/features/auth/domain/repositories/user_repositories.dart';
 
-import 'package:messanger/usecases/usecase.dart';
-
-import '../entities/user_entities.dart';
-
-class SignInWithEmailAndPassword implements UseCase<UserEntity, SignInParams> {
+class SignInWithEmailAndPassword {
   final AuthRepository repository;
 
   SignInWithEmailAndPassword(this.repository);
 
-  @override
-  Future<Either<AuthFailure, UserEntity>> call(SignInParams params) async {
-    return await repository.signInWithEmailAndPassword(
-      params.email,
-      params.password,
-    );
+  Future<UserEntity> call(String email, String password) async {
+    return await repository.signInWithEmailAndPassword(email, password);
   }
-}
-
-class SignInParams {
-  final String email;
-  final String password;
-
-  const SignInParams({required this.email, required this.password});
 }
