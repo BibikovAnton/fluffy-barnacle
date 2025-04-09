@@ -15,7 +15,12 @@ class AuthPage extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthLoading) {
           return LoadingWidget();
-        } else if (state is AuthAuthenticated) {
+        }
+        if (state is AuthUnauthenticated) {
+          return LoginOrRegister();
+        }
+
+        if (state is AuthAuthenticated) {
           return const HomePage();
         } else {
           return const LoginOrRegister();

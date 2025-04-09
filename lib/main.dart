@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messanger/core/auth/auth.dart';
 import 'package:messanger/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:messanger/features/auth/presentation/pages/home_page.dart';
-import 'package:messanger/features/auth/presentation/pages/login_page.dart';
-import 'package:messanger/features/auth/presentation/pages/profile_page.dart';
+
 import 'package:messanger/injection_container.dart' as di;
 
 void main() async {
